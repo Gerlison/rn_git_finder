@@ -11,9 +11,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Arrays;
 
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
+import io.invertase.firebase.crashlytics.ReactNativeFirebaseCrashlyticsPackage;
+import io.invertase.firebase.analytics.ReactNativeFirebaseAnalyticsPackage;
+
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
+
 public class MainApplication extends NavigationApplication {
 
   @Override
@@ -36,7 +41,10 @@ public class MainApplication extends NavigationApplication {
       // Add additional packages you require here
       // No need to add RnnPackage and MainReactPackage
       return Arrays.<ReactPackage>asList(
-          // eg. new VectorIconsPackage()
+        new ReactNativeFirebaseAppPackage(),
+        new ReactNativeFirebaseCrashlyticsPackage(),
+        new ReactNativeFirebaseAnalyticsPackage()
+        // eg. new VectorIconsPackage()
       );
   }
 
