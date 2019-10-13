@@ -1,4 +1,4 @@
-import Find from '@/modules/Find/navigation/layout';
+import Find from '~/modules/Find/navigation/layout';
 
 export default {
   stack: {
