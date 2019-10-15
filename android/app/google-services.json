@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "232573113831",
+    "firebase_url": "https://git-finder-24f7c.firebaseio.com",
+    "project_id": "git-finder-24f7c",
+    "storage_bucket": "git-finder-24f7c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232573113831:android:c193a234272547efc35942",
+        "android_client_info": {
+          "package_name": "com.git_finder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232573113831-t8begvcgf0k77nt3ga0hsvpls76kaher.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfmq5J82wwZHsiUEUKLGk1R-yl9JkcCaw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "232573113831-t8begvcgf0k77nt3ga0hsvpls76kaher.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
