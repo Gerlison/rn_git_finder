@@ -12,7 +12,6 @@ module.exports = {
           '~images': './src/assets/images',
           '~shared': './src/shared',
         },
-        extensions: ['.js', '.ios.js', '.android.js'],
       },
     ],
   ],
