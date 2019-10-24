@@ -19,7 +19,7 @@ import Icon from 'react-native-feather1s';
 import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 
-function ScreenName(props: { componentId: string }) {
+function ProfileScreen(props: { componentId: string }) {
   return (
     <Container>
       <Header>
@@ -98,4 +98,4 @@ const mapStateToProps = state => ({
   ...state,
 });
 
-export default connect(mapStateToProps)(ScreenName);
+export default connect(mapStateToProps)(ProfileScreen);

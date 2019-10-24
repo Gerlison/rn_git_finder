@@ -12,4 +12,15 @@ export const Logo = styled.Image.attrs(props => ({
   resizeMode: 'contain',
 }))`
   margin-vertical: ${spacing['LARGE']}px;
+  height: 50px;
+`;
+
+export const FlatList = styled.FlatList.attrs(props => ({
+  keyExtractor: (item, index) => index.toString(),
+}))``;
+
+export const Content = styled.View`
+  flex-grow: 1;
+  width: 100%;
+  padding: ${spacing['MEDIUM']}px;
 `;

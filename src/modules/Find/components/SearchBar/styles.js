@@ -1,5 +1,4 @@
 import styled from 'styled-components/native';
-import { Container as BaseContainer } from '~shared/styles/theme'
 import colors from '~shared/styles/colors'
 import { spacing } from '~shared/styles/metrics'
 
@@ -20,7 +19,8 @@ export const Logo = styled.Image.attrs(props => ({
 
 export const TextInput = styled.TextInput.attrs(props => ({
   placeholder: "Torvalds...",
-  returnKeyType: "search"
+  returnKeyType: "search",
+  autoFocus: true
 }))`
   flex: 1;
 `;

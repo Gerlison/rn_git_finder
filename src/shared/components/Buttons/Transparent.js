@@ -11,9 +11,8 @@ import colors from '~shared/styles/colors'
 import _ from 'lodash'
 
 function Transparent(props: properties) {
-
   return (
-    <TouchableOpacity onPress={props.onPress}>
+    <TouchableOpacity activeOpacity={0.4} onPress={props.isLoading ? null : props.onPress}>
       <Container contentSized {...props.containerStyle}>
         {props.isLoading 
           ? (

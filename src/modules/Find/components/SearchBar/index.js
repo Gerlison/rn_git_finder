@@ -3,9 +3,8 @@
 */
 
 import React, {useState} from 'react';
+import { Keyboard } from 'react-native'
 import { Container, Logo, TextInput } from './styles'
-
-import Icon from 'react-native-feather1s';
 
 import Buttons from '~shared/components/Buttons'
 
@@ -15,12 +14,14 @@ function SearchBar(props: screen_properties) {
 
   function submit() {
     setIsLoading(true);
+    Keyboard.dismiss()
+    props.getText(text)
   }
 
   return (
     <Container>
       <Logo />
-      <TextInput onSubmitEditing={submit} />
+      <TextInput onChangeText={setText} onSubmitEditing={submit} />
       <Buttons.Transparent onPress={submit} isLoading={isLoading}>
         Go
       </Buttons.Transparent>
@@ -29,7 +30,7 @@ function SearchBar(props: screen_properties) {
 }
 
 type screen_properties = { 
-  
+  getText: Function
 }
 
 export default SearchBar;
