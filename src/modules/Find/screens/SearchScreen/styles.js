@@ -10,4 +10,6 @@ export const Header = styled.View`
 export const Logo = styled.Image.attrs(props => ({
   source: require('~images/main_logo.png'),
   resizeMode: 'contain',
-}))``;
+}))`
+  margin-vertical: ${spacing['LARGE']}px;
+`;

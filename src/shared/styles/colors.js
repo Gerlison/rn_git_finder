@@ -6,6 +6,14 @@ export default {
   SECUNDARY: '',
   SECUNDARY_DARK: '',
 
+  WHITE: '#FFFFFF',
+  LIGHTER: '#F0F0F0',
+  LIGHT: '#C4C4C4',
+  REGULAR: '#999999',
+  DARK: '#666666',
+  DARKER: '#333333',
+  DARKEST: '#000000',
+
   SUCCESS: '',
   FAILURE: '',
   ERROR: '',

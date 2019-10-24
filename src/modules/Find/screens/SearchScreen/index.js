@@ -11,11 +11,8 @@ import Icon from 'react-native-feather1s';
 import { Navigation } from 'react-native-navigation';
 import { connect } from 'react-redux'
 
+import Buttons from '~shared/components/Buttons'
 import SearchBar from '../../components/SearchBar'
-
-type screen_properties = { 
-  componentId: string,
-}
 
 function SearchScreen(props: screen_properties) {
   return (
@@ -26,6 +23,10 @@ function SearchScreen(props: screen_properties) {
       </Header>
     </Container>
   );
+}
+
+type screen_properties = { 
+  componentId: string,
 }
 
 const mapStateToProps = state => {

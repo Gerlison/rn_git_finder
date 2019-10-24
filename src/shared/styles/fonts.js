@@ -7,10 +7,14 @@ export const sizing = {
 };
 
 export const styling = {
-  FAMILY: 'Roboto',
+  FAMILY: {
+    ROBOTO: 'Roboto'
+  },
 
-  LIGHT: 200,
-  REGULAR: 400,
-  MEDIUM: 600,
-  BOLD: 900,
+  WEIGHT: {
+    LIGHT: 200,
+    REGULAR: 400,
+    MEDIUM: 600,
+    BOLD: 900,
+  }
 };
