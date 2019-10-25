@@ -1,9 +1,13 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
-import ducks from './ducks';
 import thunk from 'redux-thunk';
-import tron from 'reactotron-react-native';
+
+import GlobalDucks from './ducks';
+import FindDucks from '~/modules/Find/ducks';
 
 const middlewares = applyMiddleware(thunk);
-const reducers = combineReducers(ducks);
+const reducers = combineReducers(Object.assign({},
+  GlobalDucks,
+  FindDucks
+));
 
 export default createStore(reducers, middlewares);

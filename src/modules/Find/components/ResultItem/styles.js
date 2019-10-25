@@ -10,7 +10,7 @@ export const Container = styled.View`
 `;
 
 export const Photo = styled.Image.attrs(props => ({
-  source: {url: props.source},
+  source: {uri: props.sourceUrl},
   resizeMode: "cover"
 }))`
   width: 45px;

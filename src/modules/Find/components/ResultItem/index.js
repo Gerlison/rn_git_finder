@@ -7,13 +7,15 @@ import { TouchableWithoutFeedback } from 'react-native';
 import { Container, Photo, Info, Name, UserName } from './styles'
 
 function ResultItem(props: screen_properties) {
+  const { result } = props;
+
   return (
     <TouchableWithoutFeedback onPress={props.onPress}>
       <Container>
-        <Photo />
+        <Photo sourceUrl={result.avatar_url} />
         <Info>
-          <Name>Linus Torvalds</Name>
-          <UserName>@torvalds</UserName>
+          <Name>{result.login}</Name>
+          <UserName>{result.type}</UserName>
         </Info>
       </Container>
     </TouchableWithoutFeedback>
