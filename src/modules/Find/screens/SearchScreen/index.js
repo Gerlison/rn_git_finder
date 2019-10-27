@@ -16,7 +16,6 @@ import Buttons from '~shared/components/Buttons';
 import SearchBar from '../../components/SearchBar';
 import ResultItem from '../../components/ResultItem';
 import Loading from '../../components/Loading';
-import LoadingNextPage from '../../components/LoadingNextPage';
 
 
 function SearchScreen(props: screen_properties) {
@@ -34,6 +33,7 @@ function SearchScreen(props: screen_properties) {
     const { search: {results, lastSearches} } = props;
     let listItems = lastSearches;
     let labelText = "recent searches";
+
     if (results.resultCount) {
       listItems = results.items;
       labelText = `${results.resultCount} results found`;
@@ -48,16 +48,18 @@ function SearchScreen(props: screen_properties) {
         <FlatList
           data={listItems}
           onEndReached={props.searchNextPage}
-          renderItem={({item}) => (
-            <ResultItem result={item} onPress={() => navigateToProfile(item)} />
+          renderItem={({item, index}) => (
+            <ResultItem 
+              result={item} 
+              onPress={() => navigateToProfile(item)} 
+            />
           )}/>
-        {<LoadingNextPage />}
       </>
     )
   }
 
   return (
-    <Container>
+    <Container style={{flexGrow: 1}}>
       <Header>
         <Logo />
         <SearchBar {...props} />
