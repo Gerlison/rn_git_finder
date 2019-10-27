@@ -21,3 +21,13 @@ export const Label = styled(Text)`
   color: ${colors['REGULAR']};
   margin-bottom: ${spacing['MEDIUM']}px;
 `;
+
+export const SmallLoading = styled.ActivityIndicator.attrs(props => ({
+  size: 'small',
+  color: colors[props.color || 'PRIMARY']
+}))``;
+
+export const LargeLoading = styled.ActivityIndicator.attrs(props => ({
+  size: 'large',
+  color: colors[props.color || 'PRIMARY']
+}))``;

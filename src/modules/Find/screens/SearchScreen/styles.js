@@ -17,7 +17,7 @@ export const Logo = styled.Image.attrs(props => ({
 
 export const FlatList = styled.FlatList.attrs(props => ({
   keyExtractor: (item, index) => index.toString(),
-  // onEndReachedThreshold: 2
+  onEndReachedThreshold: .1
 }))``;
 
 export const Content = styled.View`

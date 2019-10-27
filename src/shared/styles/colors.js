@@ -8,7 +8,7 @@ export default {
 
   WHITE: '#FFFFFF',
   LIGHTER: '#F0F0F0',
-  LIGHT: '#C4C4C4',
+  LIGHT: '#E5E5E5',
   REGULAR: '#999999',
   DARK: '#666666',
   DARKER: '#333333',

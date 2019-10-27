@@ -4,20 +4,25 @@
 
 import React from 'react';
 import { Container, Label } from '~shared/styles/theme';
-import { Header, Logo, Content, FlatList } from './styles'
+import { Header, Logo, Content, FlatList } from './styles';
 
 import Icon from 'react-native-feather1s';
 import { Navigation } from 'react-native-navigation';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { connect, batch } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as SearchActions from '../../ducks/Search/actions';
 
-import Buttons from '~shared/components/Buttons'
-import SearchBar from '../../components/SearchBar'
-import ResultItem from '../../components/ResultItem'
+import Buttons from '~shared/components/Buttons';
+import SearchBar from '../../components/SearchBar';
+import ResultItem from '../../components/ResultItem';
+import Loading from '../../components/Loading';
+import LoadingNextPage from '../../components/LoadingNextPage';
+
 
 function SearchScreen(props: screen_properties) {
-  function navigateToProfile() {
+
+  function navigateToProfile(item) {
+    props.setLastSearch(item);
     Navigation.push(props.componentId, {
       component: {
         name: 'navigation.User.ProfileScreen'
@@ -26,28 +31,27 @@ function SearchScreen(props: screen_properties) {
   }
 
   function renderList() {
-    const { search: {results, lasts, isLoading} } = props;
+    const { search: {results, lastSearches} } = props;
+    let listItems = lastSearches;
+    let labelText = "recent searches";
+    if (results.resultCount) {
+      listItems = results.items;
+      labelText = `${results.resultCount} results found`;
+    }
 
-    if (isLoading) 
-      return (
-        <></>
-      )
-
+    if (results.isLoading)
+      return <Loading />;
+    
     return (
       <>
-        <Label>
-          {
-            results.items 
-            ? `${results.total_count} results found` 
-            : "recent searches"
-          }
-        </Label>
+        <Label>{labelText}</Label>
         <FlatList
-          data={results.items || lasts}
-          // onEndReached={() => props.searchByText()}
+          data={listItems}
+          onEndReached={props.searchNextPage}
           renderItem={({item}) => (
-            <ResultItem result={item} onPress={navigateToProfile} />
+            <ResultItem result={item} onPress={() => navigateToProfile(item)} />
           )}/>
+        {<LoadingNextPage />}
       </>
     )
   }
@@ -56,7 +60,7 @@ function SearchScreen(props: screen_properties) {
     <Container>
       <Header>
         <Logo />
-        <SearchBar isLoading={props.search.isLoading} getText={props.searchByText} />
+        <SearchBar {...props} />
       </Header>
       <Content>
         {renderList()}
@@ -68,7 +72,10 @@ function SearchScreen(props: screen_properties) {
 type screen_properties = { 
   componentId: string,
   search: Object,
-  searchByText: Function
+  searchByText: Function,
+  searchNextPage: Function,
+  setLastSearch: Function,
+  clearSearch: Function
 }
 
 const mapStateToProps = state => {

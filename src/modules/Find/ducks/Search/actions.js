@@ -1,20 +1,42 @@
 // @flow
-import { batch } from 'react-redux';
 import Types from './types';
 import * as Api from '../../api';
-import axios from 'axios'
 
-function setSearchResults(results: Array<Object>) {
+function setSearchResults(results: Object) {
   return {
     type: Types.SET_RESULTS,
     payload: results
   };
 }
 
-export function setLastSearch(result: Array<Object>) {
+export function setLastSearch(result: Object) {
   return {
-    type: Types.SET_LAST,
+    type: Types.SET_LAST_SEARCH,
     payload: result
+  };
+}
+
+function setSearchFailed() {
+  return {
+    type: Types.SET_SEARCH_FAIL
+  };
+}
+
+function setSearchNextPageFailed() {
+  return {
+    type: Types.SET_SEARCH_NEXT_PAGE_FAIL
+  };
+}
+
+function setSearchLoading() {
+  return {
+    type: Types.SET_SEARCH_LOADING
+  };
+}
+
+function setSearchNextPageLoading() {
+  return {
+    type: Types.SET_SEARCH_NEXT_PAGE_LOADING
   };
 }
 
@@ -24,28 +46,43 @@ export function clearSearch() {
   };
 }
 
-function setSearchFailed() {
-  return {
-    type: Types.SEARCH_FAIL
-  };
-}
-
-function setSearchLoading() {
-  return {
-    type: Types.SEARCH_LOADING
-  };
-}
-
-export function searchByText(text: string, page: string = '1') {
+export function searchByText(text: string) {
   return (dispatch: Function, getState: Function) => {
-    const { search: {results} } = getState();
+    dispatch(clearSearch());
     dispatch(setSearchLoading());
-    Api.search.get(`/users?q=${text}&page=${page}`).then((response) => {
-      // nextPage: response.headers.link.includes('rel="next"') ? results.nextPage++ : false,
-      dispatch(setSearchResults(response.data))
+
+    Api.search.get(`/users?q=${text}`)
+    .then((response) => {
+      dispatch(setSearchResults({
+        ...response.data,
+        hasNext: response.headers.link && response.headers.link.includes('next'),
+        searchText: text
+      }))
     }).catch(error => {
       console.log(error)
       dispatch(setSearchFailed());
+    })
+  };
+}
+
+export function searchNextPage() {
+  return (dispatch: Function, getState: Function) => {
+    const { search: {config} } = getState();
+    
+    if (!config.hasNextPage)
+      return;
+
+    dispatch(setSearchNextPageLoading());
+    Api.search.get(`/users?q=${config.searchText}&page=${config.page}`)
+    .then((response) => {
+      dispatch(setSearchResults({
+        ...response.data,
+        hasNext: response.headers.link && response.headers.link.includes('next'),
+        searchText: config.searchText
+      }))
+    }).catch(error => {
+      console.log(error)
+      dispatch(setSearchNextPageFailed());
     })
   };
 }

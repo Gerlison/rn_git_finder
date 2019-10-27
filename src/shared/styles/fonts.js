@@ -1,8 +1,10 @@
 export const sizing = {
-  SMALLEST: 11,
+  SMALLEST: 8,
+  SMALLER: 11,
   SMALL: 14,
   MEDIUM: 16,
   LARGE: 18,
+  LARGER: 22,
   LARGEST: 28,
 };
 
