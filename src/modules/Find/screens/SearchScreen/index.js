@@ -17,9 +17,12 @@ import SearchBar from '../../components/SearchBar';
 import ResultItem from '../../components/ResultItem';
 import Loading from '../../components/Loading';
 import LoadingNextPage from '../../components/LoadingNextPage';
+import ResultNotFound from '../../components/ResultNotFound';
+import EmptyLasSearches from '../../components/EmptyLasSearches';
 
 
 function SearchScreen(props: screen_properties) {
+  const { search: {results, lastSearches, config} } = props;
 
   function navigateToProfile(item) {
     props.setLastSearch(item);
@@ -30,24 +33,24 @@ function SearchScreen(props: screen_properties) {
     });
   }
 
-  function renderList() {
-    const { search: {results, lastSearches} } = props;
-    let listItems = lastSearches;
-    let labelText = "recent searches";
-
-    if (results.resultCount) {
-      listItems = results.items;
-      labelText = `${results.resultCount} results found`;
-    }
-
+  function renderLoading() {
     if (results.isLoading)
       return <Loading />;
-    
-    function renderLoading() {
-      if (results.isLoadingNextPage)
-        return <LoadingNextPage />;
+  }
 
-      return <></>;
+  function renderList() {
+    let listItems = lastSearches;
+    let labelText = "";
+
+    if (lastSearches.length)
+      labelText = "recent searches";
+
+    if (results.resultCount !== null) {
+      listItems = results.items;
+      if (results.resultCount)
+        labelText = `${results.resultCount} results found`;
+      else 
+        labelText = "";
     }
 
     return (
@@ -56,7 +59,7 @@ function SearchScreen(props: screen_properties) {
         <FlatList
           data={listItems}
           onEndReached={props.searchNextPage}
-          ListEmptyComponent={() => <></>}
+          ListEmptyComponent={renderListEmpty}
           renderItem={({item, index}) => (
             <>
               <ResultItem 
@@ -65,10 +68,23 @@ function SearchScreen(props: screen_properties) {
               />
             </>
           )}
-          ListFooterComponent={renderLoading()}/>
+          ListFooterComponent={renderLoadingNextPage}/>
       </>
     )
-    
+  }
+
+  function renderLoadingNextPage() {
+    if (config.hasNextPage)
+      return <LoadingNextPage />;
+
+    return <></>;
+  }
+
+  function renderListEmpty() {
+    if (results.resultCount === 0)
+      return <ResultNotFound />
+
+    return <EmptyLasSearches />
   }
 
   return (
@@ -78,7 +94,10 @@ function SearchScreen(props: screen_properties) {
         <SearchBar {...props} />
       </Header>
       <Content>
-        {renderList()}
+        {results.isLoading
+          ? renderLoading() 
+          : renderList()
+        }
       </Content>
     </Container>
   );

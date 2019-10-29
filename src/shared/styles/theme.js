@@ -20,6 +20,7 @@ export const Label = styled(Text)`
   text-transform: uppercase;
   color: ${colors['REGULAR']};
   margin-bottom: ${spacing['MEDIUM']}px;
+  font-size: ${sizing['SMALL']}px;
 `;
 
 export const SmallLoading = styled.ActivityIndicator.attrs(props => ({

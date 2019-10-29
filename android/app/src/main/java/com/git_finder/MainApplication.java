@@ -19,6 +19,8 @@ import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationReactNativeHost;
 import com.reactnativenavigation.react.ReactGateway;
 
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+
 public class MainApplication extends NavigationApplication {
 
   @Override
@@ -43,7 +45,8 @@ public class MainApplication extends NavigationApplication {
       return Arrays.<ReactPackage>asList(
         new ReactNativeFirebaseAppPackage(),
         new ReactNativeFirebaseCrashlyticsPackage(),
-        new ReactNativeFirebaseAnalyticsPackage()
+        new ReactNativeFirebaseAnalyticsPackage(),
+        new AsyncStoragePackage()
         // eg. new VectorIconsPackage()
       );
   }

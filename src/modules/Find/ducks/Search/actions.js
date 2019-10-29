@@ -51,7 +51,7 @@ export function searchByText(text: string) {
     dispatch(clearSearch());
     dispatch(setSearchLoading());
 
-    Api.search.get(`/users?q=${text}`)
+    Api.search.get(`/users?q=${text}&per_page=100`)
     .then((response) => {
       dispatch(setSearchResults({
         ...response.data,
@@ -73,7 +73,7 @@ export function searchNextPage() {
       return;
 
     dispatch(setSearchNextPageLoading());
-    Api.search.get(`/users?q=${config.searchText}&page=${config.page}`)
+    Api.search.get(`/users?q=${config.searchText}&page=${config.page}&per_page=100`)
     .then((response) => {
       dispatch(setSearchResults({
         ...response.data,
