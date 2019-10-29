@@ -29,7 +29,7 @@ function SearchBar(props: screen_properties) {
   const renderButton = React.useMemo(() => {
     if (results.resultCount) {
       return(
-        <Buttons.Transparent isLoading={results.isLoadingNextPage} onPress={handleCancel}>
+        <Buttons.Transparent onPress={handleCancel}>
           <Icon name="x" size={24} />
         </Buttons.Transparent>
       )

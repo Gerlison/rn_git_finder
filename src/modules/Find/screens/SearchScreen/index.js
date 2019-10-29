@@ -16,6 +16,7 @@ import Buttons from '~shared/components/Buttons';
 import SearchBar from '../../components/SearchBar';
 import ResultItem from '../../components/ResultItem';
 import Loading from '../../components/Loading';
+import LoadingNextPage from '../../components/LoadingNextPage';
 
 
 function SearchScreen(props: screen_properties) {
@@ -42,20 +43,32 @@ function SearchScreen(props: screen_properties) {
     if (results.isLoading)
       return <Loading />;
     
+    function renderLoading() {
+      if (results.isLoadingNextPage)
+        return <LoadingNextPage />;
+
+      return <></>;
+    }
+
     return (
       <>
         <Label>{labelText}</Label>
         <FlatList
           data={listItems}
           onEndReached={props.searchNextPage}
+          ListEmptyComponent={() => <></>}
           renderItem={({item, index}) => (
-            <ResultItem 
-              result={item} 
-              onPress={() => navigateToProfile(item)} 
-            />
-          )}/>
+            <>
+              <ResultItem 
+                result={item} 
+                onPress={() => navigateToProfile(item)} 
+              />
+            </>
+          )}
+          ListFooterComponent={renderLoading()}/>
       </>
     )
+    
   }
 
   return (

@@ -33,7 +33,7 @@ function Loading(props: screen_properties) {
 
   return (
     <>
-      {new Array(5).fill({}).map((item, index) => (
+      {new Array(10).fill({}).map((item, index) => (
         <Container key={index} style={{opacity: animatedOpacity}}>
           <Photo />
           <Info>
