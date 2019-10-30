@@ -26,8 +26,8 @@ function SearchBar(props: screen_properties) {
     props.clearSearch()
   }
 
-  const renderButton = React.useMemo(() => {
-    if (results.resultCount !== null) {
+  function renderButton() {
+    if (results.resultCount !== null || results.isFailed) {
       return(
         <Buttons.Transparent onPress={handleCancel}>
           <Icon name="x" size={24} />
@@ -42,7 +42,7 @@ function SearchBar(props: screen_properties) {
         Go
       </Buttons.Transparent>
     )
-  }, [results])
+  }
 
   return (
     <Container>
@@ -51,7 +51,7 @@ function SearchBar(props: screen_properties) {
         onChangeText={setText} 
         onSubmitEditing={submit} 
         value={text}/>
-      {renderButton}
+      {renderButton()}
     </Container>
   );
 }

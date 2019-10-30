@@ -9,16 +9,10 @@ function setSearchResults(results: Object) {
   };
 }
 
-export function setLastSearch(result: Object) {
+function setSearchFailed(payload: Object) {
   return {
-    type: Types.SET_LAST_SEARCH,
-    payload: result
-  };
-}
-
-function setSearchFailed() {
-  return {
-    type: Types.SET_SEARCH_FAIL
+    type: Types.SET_SEARCH_FAIL,
+    payload
   };
 }
 
@@ -60,7 +54,7 @@ export function searchByText(text: string) {
       }))
     }).catch(error => {
       console.log(error)
-      dispatch(setSearchFailed());
+      dispatch(setSearchFailed({searchText: text}));
     })
   };
 }

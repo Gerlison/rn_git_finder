@@ -2,8 +2,8 @@ import styled from 'styled-components/native';
 
 export const Image = styled.Image.attrs(props => ({
   resizeMode: 'contain',
-  source: require('~images/noResultsFound.png')
+  source: require('~images/noConnection.png')
 }))`
-  width: 50%;
+  width: 100%;
   height: 160px;
 `;

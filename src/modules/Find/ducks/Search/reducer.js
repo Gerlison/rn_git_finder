@@ -4,12 +4,11 @@ const INITIAL_STATE = {
   results: {
     isLoading: false,
     isLoadingNextPage: false,
-    isFailed: false,
     isFailedNextPage: false,
+    isFailed: false,
     items: [],
     resultCount: null,
   },
-  lastSearches: [],
   config: {
     hasNextPage: false,
     searchText: '',
@@ -42,15 +41,6 @@ export default function (state = INITIAL_STATE, action) {
         },
       };
 
-    case Types.SET_LAST_SEARCH:
-      return {
-        ...state,
-        lastSearches: [
-          action.payload,
-          ...state.lastSearches.slice(0, 9),
-        ]
-      };
-
     case Types.SET_SEARCH_FAIL:
       return {
         ...state,
@@ -58,7 +48,13 @@ export default function (state = INITIAL_STATE, action) {
           ...state.results,
           isLoading: false,
           isFailed: true
-        }
+        },
+        config: {
+          ...state.config,
+          hasNextPage: true,
+          searchText: action.payload.searchText,
+          page: state.config.page
+        },
       };
 
     case Types.SET_SEARCH_NEXT_PAGE_FAIL:

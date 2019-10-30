@@ -6,7 +6,7 @@ export default function EmptyLasSearches() {
   return (
     <Container alignItems="center">
       <Image />
-      <Text size="LARGER">No results found</Text>
+      <Text size="LARGE">No results found</Text>
     </Container>
   );
 }

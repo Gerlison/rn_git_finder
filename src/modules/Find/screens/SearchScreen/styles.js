@@ -17,12 +17,12 @@ export const Logo = styled.Image.attrs(props => ({
 
 export const FlatList = styled.FlatList.attrs(props => ({
   keyExtractor: (item, index) => index.toString(),
-  onEndReachedThreshold: 2
+  onEndReachedThreshold: 2,
 }))``;
 
 export const Content = styled.View`
   flex: 1;
   width: 100%;
-  padding: ${spacing['MEDIUM']}px;
+  padding: ${props => props.isFailed ? 0 : spacing['MEDIUM']}px;
   padding-bottom: 0px;
 `;

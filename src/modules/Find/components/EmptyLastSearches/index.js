@@ -2,7 +2,7 @@ import React from 'react';
 import { Image } from './styles';
 import { Container, Text } from '~shared/styles/theme';
 
-export default function EmptyLasSearches() {
+export default function EmptyLastSearches() {
   return (
     <Container alignItems="center">
       <Image />
