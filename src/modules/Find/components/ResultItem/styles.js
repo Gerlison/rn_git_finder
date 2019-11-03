@@ -28,5 +28,4 @@ export const Name = styled(Text)``;
 export const UserName = styled(Text)`
   font-size: ${sizing['SMALL']}px;
   color: ${colors['REGULAR']};
-  
 `;
