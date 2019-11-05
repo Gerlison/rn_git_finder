@@ -4,7 +4,7 @@
 
 import React from 'react';
 import { Photo, UserName, Stat } from './styles';
-import { Container, Text } from '~shared/styles/theme';
+import { Container, Text, LargeLoading } from '~shared/styles/theme';
 import { spacing } from '~shared/styles/metrics'
 import colors from '~shared/styles/colors'
 
@@ -23,6 +23,10 @@ function ProfileScreen(props: properties) {
 
   React.useEffect(() => {
     props.getUser(props.user.login);
+
+    return function () {
+      props.clearUser()
+    }
   }, [])
 
   function navigateToFind() {
@@ -33,10 +37,22 @@ function ProfileScreen(props: properties) {
     const { user } = profile;
 
     if (user.isLoading) 
-      return <Loading onPress={navigateToFind} />
+      return (
+        <>
+          <Loading onPress={navigateToFind} />
+          <Container style={{padding: spacing['LARGE']}} alignItems="center" justifyContent="center">
+            <LargeLoading />
+          </Container>
+        </>
+      );
 
     if (user.isFailed)
-      return <ConnectionError onPress={() => props.getUser(props.user.login)} />;
+      return (
+        <>
+          <Loading onPress={navigateToFind} />
+          <ConnectionError onPress={() => props.getUser(props.user.login)} />
+        </>
+      );
 
     return (
       <Container style={{flexGrow: 1}}>
@@ -96,6 +112,7 @@ function ProfileScreen(props: properties) {
 type properties = {
   componentId: string,
   getUser: Function,
+  clearUser: Function,
   user: Object,
   profile: Object
 }

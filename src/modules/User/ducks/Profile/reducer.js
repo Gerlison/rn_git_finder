@@ -40,6 +40,13 @@ export default function (state = INITIAL_STATE, action) {
           isFailed: true
         }
       };
+
+    case Types.CLEAR_USER:
+      console.log('clearing user')
+      return {
+        ...state,
+        user: INITIAL_STATE.user
+      }
     default:
       return state;
   }

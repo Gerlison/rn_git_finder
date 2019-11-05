@@ -21,6 +21,12 @@ function setUser(payload: Object) {
   };
 }
 
+export function clearUser() {
+  return {
+    type: Types.CLEAR_USER  
+  }
+}
+
 export function getUser(user: string) {
   return (dispatch: Function, getState: Function) => {
     dispatch(setUserLoading());

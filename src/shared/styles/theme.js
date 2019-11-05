@@ -4,9 +4,11 @@ import { sizing, styling } from '~shared/styles/fonts';
 import colors from '~shared/styles/colors';
 
 export const Container = styled.View`
+  flex-grow: ${props => props.grow ? 1 : 0};
   flex-direction: ${props => props.row ? 'row' : 'column'};
   align-items: ${props => props.alignItems || 'flex-start' };
   justify-content: ${props => props.justifyContent || 'flex-start' };
+  alignSelf: ${props => props.stretch ? 'stretch' : 'auto' };
 `;
 
 export const Text = styled.Text`
