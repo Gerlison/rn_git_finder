@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-export const search = axios.create({
+export const users = axios.create({
   baseURL: 'https://api.github.com/users',
 });

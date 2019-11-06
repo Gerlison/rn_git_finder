@@ -1,7 +1,7 @@
 import Types from './types';
 
 const INITIAL_STATE = {
-  user: {
+  repositories: {
     isLoading: false,
     isFailed: false, 
     data: null, 
@@ -10,30 +10,30 @@ const INITIAL_STATE = {
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-    case Types.SET_USER:
+    case Types.SET_REPOSITORIES:
       return {
         ...state,
-        user: {
-          ...state.user,
+        repositories: {
+          ...state.repositories,
           data: action.payload,
         }
       };
 
-    case Types.SET_USER_LOADING:
+    case Types.SET_REPOSITORIES_LOADING:
       return {
         ...state,
-        user: {
-          ...state.user,
+        repositories: {
+          ...state.repositories,
           isLoading: true,
           isFailed: false
         }
       };
 
-    case Types.SET_USER_FAILED:
+    case Types.SET_REPOSITORIES_FAILED:
       return {
         ...state,
-        user: {
-          ...state.user,
+        repositories: {
+          ...state.repositories,
           isLoading: false,
           isFailed: true
         }

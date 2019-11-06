@@ -3,7 +3,7 @@
 */
 
 import React from 'react';
-import { Photo, UserName, Stat } from './styles';
+import { Photo, UserName, Stat, RepositorieItem, RepositorieList } from './styles';
 import { Container, Text, LargeLoading } from '~shared/styles/theme';
 import { spacing } from '~shared/styles/metrics'
 import colors from '~shared/styles/colors'
@@ -13,9 +13,11 @@ import { connect } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import { bindActionCreators } from 'redux';
 import * as ProfileActions from '../../ducks/Profile/actions';
+import * as RepositoriesActions from '../../ducks/Repositories/actions';
 
 import Button from '~shared/components/Buttons';
 import Loading from '../../components/Loading';
+import Repositories from '../../components/Repositories';
 import ConnectionError from '~shared/components/ConnectionError';
 
 function ProfileScreen(props: properties) {
@@ -55,7 +57,7 @@ function ProfileScreen(props: properties) {
       );
 
     return (
-      <Container style={{flexGrow: 1}}>
+      <Container grow>
         <Container row alignItems="center" style={{margin: spacing['LARGER']}}>
           <Button.Transparent onPress={navigateToFind}>
             <Icon color={colors['DARKEST']} name="arrow-left" size={24} />
@@ -66,7 +68,7 @@ function ProfileScreen(props: properties) {
             <UserName>@{user.data.login}</UserName>
           </Container>
         </Container>
-        <Container row style={{alignSelf: 'stretch'}}>
+        <Container row stretch>
           <Stat>
             <Text size='LARGE'>{user.data.following}</Text>
             <Text color='PRIMARY' size='SMALLER'>Following</Text>
@@ -80,28 +82,9 @@ function ProfileScreen(props: properties) {
             <Text color='PRIMARY' size='SMALLER'>Followers</Text>
           </Stat>
         </Container>
-        <Container style={{padding: spacing['LARGE'], alignSelf: "stretch"}}>
-          {/* <Container row style={{alignSelf: "stretch", marginBottom: spacing['MEDIUM']}}>
-            <Container style={{width: '50%'}}>
-              <Text size='SMALL' color='REGULAR'>Name</Text>
-              <Text>Gerlison</Text>
-            </Container>
-            <Container style={{width: '50%'}}>
-              <Text size='SMALL' color='REGULAR'>Login</Text>
-              <Text>gerlison</Text>
-            </Container>
-          </Container>
-          <Container row style={{alignSelf: "stretch"}}>
-            <Container style={{width: '50%'}}>
-              <Text size='SMALL' color='REGULAR'>Company</Text>
-              <Text>Following</Text>
-            </Container>
-            <Container style={{width: '50%'}}>
-              <Text size='SMALL' color='REGULAR'>Location</Text>
-              <Text>Following</Text>
-            </Container>
-          </Container> */}
-        </Container>
+        <Repositories 
+          getRepositories={props.getRepositories} 
+          repositories={props.repositories} />         
       </Container>
     );
   }
@@ -113,8 +96,10 @@ type properties = {
   componentId: string,
   getUser: Function,
   clearUser: Function,
+  getRepositories: Function,
   user: Object,
-  profile: Object
+  profile: Object,
+  repositories: Object
 }
 
 const mapStateToProps = state => {
@@ -123,6 +108,6 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators(Object.assign({}, ProfileActions), dispatch);
+  bindActionCreators(Object.assign({}, ProfileActions, RepositoriesActions), dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileScreen);

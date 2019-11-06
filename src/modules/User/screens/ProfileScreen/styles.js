@@ -26,6 +26,5 @@ export const Stat = styled.View`
   align-items: center;
   border-bottom-width: .2;
   border-top-width: .2;
-  border-color: ${colors['LIGHT']};
-  marginBottom: ${spacing['MEDIUM']}px;
+  border-color: ${colors['REGULAR']};
 `;

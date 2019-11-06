@@ -30,7 +30,7 @@ export function clearUser() {
 export function getUser(user: string) {
   return (dispatch: Function, getState: Function) => {
     dispatch(setUserLoading());
-    Api.search.get(`${user}`)
+    Api.users.get(`${user}`)
     .then((response) => {
       dispatch(setUser(response.data))
     }).catch(error => {

@@ -2,34 +2,36 @@
 import Types from './types';
 import * as Api from '../../api';
 
-function setUserLoading() {
+function setRepositoriesLoading() {
   return {
-    type: Types.SET_USER_LOADING
+    type: Types.SET_REPOSITORIES_LOADING
   };
 }
 
-function setUserFailed() {
+function setRepositoriesFailed() {
   return {
-    type: Types.SET_USER_FAILED
+    type: Types.SET_REPOSITORIES_FAILED
   };
 }
 
-function setUser(payload: Object) {
+function setRepositories(payload: Object) {
   return {
-    type: Types.SET_USER,
+    type: Types.SET_REPOSITORIES,
     payload
   };
 }
 
-export function getUser(user: string) {
+export function getRepositories() {
   return (dispatch: Function, getState: Function) => {
-    dispatch(setUserLoading());
-    Api.search.get(`/users/${user}`)
-    .then((response) => {
-      dispatch(setUser(response.data))
-    }).catch(error => {
-      console.log(error)
-      dispatch(setUserFailed());
-    })
+    dispatch(setRepositoriesLoading());
+    const { profile: {user}} = getState();
+
+    Api.users.get(`${user.data.login}/repos`)
+      .then((response) => {
+        dispatch(setRepositories(response.data))
+      }).catch(error => {
+        console.log(error)
+        dispatch(setRepositoriesFailed());
+      })
   };
 }
