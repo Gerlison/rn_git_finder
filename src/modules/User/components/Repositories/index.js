@@ -17,6 +17,10 @@ function Repositories(props: properties) {
 
   React.useEffect(() => {
     props.getRepositories();
+
+    return function() {
+      props.clearRepositories();
+    }
   }, [])
 
   return (
@@ -32,7 +36,7 @@ function Repositories(props: properties) {
               </Text>
             }
 
-            <Text size='SMALLER' color='REGULAR'>
+            <Text size='SMALLER' color='REGULAR' style={{marginTop: spacing['SMALLER']}}>
               {item.language && item.language + '   -   '}
               Updated {getPassedTimeFromUTCDate(item.updated_at)}
             </Text>
@@ -48,6 +52,7 @@ function Repositories(props: properties) {
 
 type properties = {
   getRepositories: Function,
+  clearRepositories: Function,
   repositories: Object
 }
 

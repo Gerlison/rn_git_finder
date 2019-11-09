@@ -84,6 +84,7 @@ function ProfileScreen(props: properties) {
         </Container>
         <Repositories 
           getRepositories={props.getRepositories} 
+          clearRepositories={props.clearRepositories} 
           repositories={props.repositories} />         
       </Container>
     );
@@ -97,6 +98,7 @@ type properties = {
   getUser: Function,
   clearUser: Function,
   getRepositories: Function,
+  clearRepositories: Function,
   user: Object,
   profile: Object,
   repositories: Object

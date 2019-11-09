@@ -38,6 +38,9 @@ export default function (state = INITIAL_STATE, action) {
           isFailed: true
         }
       };
+
+    case Types.CLEAR_REPOSITORIES:
+      return INITIAL_STATE;
     default:
       return state;
   }

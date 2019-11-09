@@ -19,5 +19,4 @@ export const RepositorieList = styled.FlatList.attrs(props => ({
 }))`
   align-self: stretch;
   padding-left: ${spacing['LARGER']}px;
-  background-color: ${colors['LIGHTER']};
 `;

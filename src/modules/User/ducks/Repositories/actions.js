@@ -21,6 +21,13 @@ function setRepositories(payload: Object) {
   };
 }
 
+export function clearRepositories() {
+  return {
+    type: Types.CLEAR_REPOSITORIES
+  };
+}
+
+
 export function getRepositories() {
   return (dispatch: Function, getState: Function) => {
     dispatch(setRepositoriesLoading());
