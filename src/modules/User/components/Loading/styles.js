@@ -1,18 +1,15 @@
 import styled from 'styled-components/native';
-import colors from '~shared/styles/colors'
+import { Text as BaseText } from '~shared/styles/theme';
 import { spacing } from '~shared/styles/metrics'
-import { sizing } from '~shared/styles/fonts'
-import { Text } from '~shared/styles/theme'
+import colors from '~shared/styles/colors'
 
-export const UserName = styled(Text)`
-  font-size: ${sizing['SMALL']}px;
-  color: ${colors['REGULAR']};
+export const Text = styled(BaseText)`
+  background-color: ${colors['LIGHTER']};
+  width: 100%;
+  margin-bottom: ${spacing['SMALLEST']}px;
 `;
 
-export const Photo = styled.Image.attrs(props => ({
-  source: {uri: props.sourceUrl},
-  resizeMode: "cover"
-}))`
+export const Photo = styled.View`
   width: 64px;
   height: 64px;
   border-radius: 3px;
@@ -26,5 +23,6 @@ export const Stat = styled.View`
   align-items: center;
   border-bottom-width: .2;
   border-top-width: .2;
-  border-color: ${colors['REGULAR']};
+  border-color: ${colors['LIGHT']};
+  marginBottom: ${spacing['MEDIUM']}px;
 `;

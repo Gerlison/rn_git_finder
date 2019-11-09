@@ -7,7 +7,7 @@ import Button from '~shared/components/Buttons';
 
 function ConnectionError(props: properties) {
   return (
-    <Container style={{marginTop: spacing['LARGEST']}} alignItems="center">
+    <Container style={{marginTop: spacing['LARGEST'], ...props.style}} alignItems="center">
       <Image />
       <Text size="LARGE">Something goes wrong</Text>
       <Button.Transparent onPress={props.onPress} style={{marginTop: spacing['SMALL']}}>
@@ -18,7 +18,8 @@ function ConnectionError(props: properties) {
 }
 
 type properties = {
-  onPress: Function
+  onPress: Function,
+  style?: mixed
 };
 
 export default ConnectionError;

@@ -5,6 +5,7 @@ import thunk from 'redux-thunk';
 
 import GlobalDucks from './ducks';
 import FindDucks from '~/modules/Find/ducks';
+import UserDucks from '~/modules/User/ducks';
 
 const persistConfig = {
   key: 'root',
@@ -18,7 +19,8 @@ const middlewares = applyMiddleware(thunk);
 
 const reducers = combineReducers(Object.assign({},
   GlobalDucks,
-  FindDucks
+  FindDucks,
+  UserDucks
 ));
 
 const persistedReducer = persistReducer(persistConfig, reducers)

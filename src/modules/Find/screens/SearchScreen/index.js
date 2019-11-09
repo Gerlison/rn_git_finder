@@ -20,7 +20,7 @@ import Loading from '../../components/Loading';
 import LoadingNextPage from '../../components/LoadingNextPage';
 import ResultNotFound from '../../components/ResultNotFound';
 import EmptyLastSearches from '../../components/EmptyLastSearches';
-import ConnectionError from '../../components/ConnectionError';
+import ConnectionError from '~shared/components/ConnectionError';
 
 
 function SearchScreen(props: screen_properties) {
@@ -30,7 +30,13 @@ function SearchScreen(props: screen_properties) {
     props.setLastSearch(item);
     Navigation.push(props.componentId, {
       component: {
-        name: 'navigation.User.ProfileScreen'
+        name: 'navigation.User.ProfileScreen',
+        passProps: {
+          user: {
+            id: item.id,  
+            login: item.login
+          }
+        },
       }
     });
   }
@@ -84,12 +90,10 @@ function SearchScreen(props: screen_properties) {
           onEndReached={props.searchNextPage}
           ListEmptyComponent={renderListEmpty}
           renderItem={({item, index}) => (
-            <>
-              <ResultItem 
-                result={item} 
-                onPress={() => navigateToProfile(item)} 
-              />
-            </>
+            <ResultItem 
+              result={item} 
+              onPress={() => navigateToProfile(item)} 
+            />
           )}
           ListFooterComponent={renderLoadingNextPage}/>
       </>
