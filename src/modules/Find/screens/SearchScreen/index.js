@@ -90,12 +90,10 @@ function SearchScreen(props: screen_properties) {
           onEndReached={props.searchNextPage}
           ListEmptyComponent={renderListEmpty}
           renderItem={({item, index}) => (
-            <>
-              <ResultItem 
-                result={item} 
-                onPress={() => navigateToProfile(item)} 
-              />
-            </>
+            <ResultItem 
+              result={item} 
+              onPress={() => navigateToProfile(item)} 
+            />
           )}
           ListFooterComponent={renderLoadingNextPage}/>
       </>
