@@ -19,7 +19,7 @@ function ConnectionError(props: properties) {
 
 type properties = {
   onPress: Function,
-  style?: Array
+  style?: Array<Object>
 };
 
 export default ConnectionError;
