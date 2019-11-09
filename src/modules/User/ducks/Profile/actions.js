@@ -1,6 +1,7 @@
 // @flow
 import Types from './types';
 import * as Api from '../../api';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 function setUserLoading() {
   return {
@@ -36,6 +37,7 @@ export function getUser(user: string) {
     }).catch(error => {
       console.log(error)
       dispatch(setUserFailed());
+      crashlytics().recordError(error)
     })
   };
 }

@@ -1,6 +1,7 @@
 // @flow
 import Types from './types';
 import * as Api from '../../api';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 function setRepositoriesLoading() {
   return {
@@ -39,6 +40,7 @@ export function getRepositories() {
       }).catch(error => {
         console.log(error)
         dispatch(setRepositoriesFailed());
+        crashlytics().recordError(error)
       })
   };
 }

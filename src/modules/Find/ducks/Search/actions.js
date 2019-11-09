@@ -1,6 +1,7 @@
 // @flow
 import Types from './types';
 import * as Api from '../../api';
+import crashlytics from '@react-native-firebase/crashlytics';
 
 function setSearchResults(results: Object) {
   return {
@@ -55,6 +56,7 @@ export function searchByText(text: string) {
     }).catch(error => {
       console.log(error)
       dispatch(setSearchFailed({searchText: text}));
+      crashlytics().recordError(error)
     })
   };
 }
@@ -77,6 +79,7 @@ export function searchNextPage() {
     }).catch(error => {
       console.log(error)
       dispatch(setSearchNextPageFailed());
+      crashlytics().recordError(error)
     })
   };
 }
