@@ -1,11 +1,16 @@
-import React from './node_modules/react';
-import {Navigation} from './node_modules/react-native-navigation';
-import { Provider } from './node_modules/react-redux'
-import store from './node_modules/@/store'
+import React from 'react';
+import {Navigation} from 'react-native-navigation';
+import ProviderHOC from '~shared/helpers/ProviderHOC';
 
-import App from './node_modules/@/modules/Find/screens/ScreenName';
+import ProfileScreen from '~/modules/User/screens/ProfileScreen';
+import RepositoryScreen from '~/modules/User/screens/RepositoryScreen';
 
 export default function registerComponents() {
-  Navigation.registerComponentWithRedux(
-    `navigation.Find.ScreenName`, () => App, Provider,store);
+  Navigation.registerComponent(
+    `navigation.User.ProfileScreen`, () => ProviderHOC(ProfileScreen)
+  );
+
+  Navigation.registerComponent(
+    `navigation.User.RepositoryScreen`, () => RepositoryScreen
+  );
 }

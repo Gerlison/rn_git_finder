@@ -5,7 +5,7 @@ if (__DEV__) {
 }
 
 import { Navigation } from 'react-native-navigation';
-import layout from '@/navigation/layout';
+import layout from '~/navigation/layout';
 import tron from 'reactotron-react-native';
 
 Navigation.events().registerAppLaunchedListener(() => {

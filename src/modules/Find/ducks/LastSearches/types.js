@@ -1,0 +1,4 @@
+export default {
+  'SET_LAST_SEARCH': 'SET_LAST_SEARCH',
+  'CLEAR_SEARCHES': 'CLEAR_SEARCHES',
+}

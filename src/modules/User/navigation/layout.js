@@ -1,11 +1,17 @@
-import {Navigation} from './node_modules/react-native-navigation';
+import {Navigation} from 'react-native-navigation';
 import registerComponents from './register';
 
 registerComponents();
 
 export default {
-  component: {
-    id: "BoilerPlate.ScreenName",
-    name: 'navigation.BoilerPlate.ScreenName',
-  },
+  stack: {
+    children: [
+      {
+        component: {
+          id: "User.ProfileScreen",
+          name: 'navigation.User.ProfileScreen',
+        },
+      }
+    ]
+  }
 };

@@ -5,7 +5,7 @@ registerComponents();
 
 export default {
   component: {
-    id: "BoilerPlate.ScreenName",
-    name: 'navigation.BoilerPlate.ScreenName',
+    id: "Find.SearchScreen",
+    name: 'navigation.Find.SearchScreen',
   },
 };
