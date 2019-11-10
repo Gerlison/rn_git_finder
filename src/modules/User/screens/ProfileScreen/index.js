@@ -85,7 +85,8 @@ function ProfileScreen(props: properties) {
         <Repositories 
           getRepositories={props.getRepositories} 
           clearRepositories={props.clearRepositories} 
-          repositories={props.repositories} /> 
+          repositories={props.repositories} 
+          componentId={props.componentId}/> 
       </Container>
     );
   }
