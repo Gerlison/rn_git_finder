@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
@@ -46,7 +47,8 @@ public class MainApplication extends NavigationApplication {
         new ReactNativeFirebaseAppPackage(),
         new ReactNativeFirebaseCrashlyticsPackage(),
         new ReactNativeFirebaseAnalyticsPackage(),
-        new AsyncStoragePackage()
+        new AsyncStoragePackage(),
+        new RNCWebViewPackage()
         // eg. new VectorIconsPackage()
       );
   }
