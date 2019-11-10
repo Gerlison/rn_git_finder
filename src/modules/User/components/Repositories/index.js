@@ -19,13 +19,21 @@ import Icon from 'react-native-feather1s';
 
 function Repositories(props: properties) {
 
-  function navigateToRepository() {
+  function navigateToRepository(repo_url, repo_name) {
     Navigation.push(props.componentId, {
       component: {
         name: 'navigation.User.RepositoryScreen',
         passProps: {
-          repository: 'teste'
+          repository: repo_url
         },
+        options: {
+          topBar: {
+            visible: true,
+            title: {
+              text: repo_name
+            }
+          }
+        }
       }
     });
   }
@@ -50,7 +58,7 @@ function Repositories(props: properties) {
       data={_.get(props, 'repositories.repositories.data')}
       ListEmptyComponent={LoadingRepositories}
       renderItem={(({item}) => (
-        <TouchableWithoutFeedback onPress={navigateToRepository}>
+        <TouchableWithoutFeedback onPress={() => navigateToRepository(item.html_url, item.name)}>
           <RepositorieItem>
             <Container grow style={{flexBasis: '70%'}}>
               <Text color='SECUNDARY'>{item.name}</Text>
